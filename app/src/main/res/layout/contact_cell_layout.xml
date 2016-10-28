@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="81dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal">
+    <ImageView
+        android:layout_height="50dp"
+        android:layout_width="50dp"
+        android:layout_margin="10dp"
+        android:layout_gravity="center_vertical"
+        android:background="@color/colorAccent">
+        </ImageView>
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/firstName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="Jolin"
+                android:textSize="16sp"
+                android:textColor="@color/separator"/>
+            <TextView
+                android:id="@+id/lastName"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Zhang"
+                android:textSize="16sp"
+                android:textColor="@color/separator"/>
+            </LinearLayout>
+        <TextView
+            android:id="@+id/phoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/separator"
+            android:text="(214) 845-0217"/>
+        </LinearLayout>
+
+</LinearLayout>
+
+    <View
+        android:layout_height="1dp"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:background="@color/separator"/>
+</LinearLayout>
