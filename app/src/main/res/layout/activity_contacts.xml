@@ -4,11 +4,13 @@
     android:id="@+id/activity_contacts_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.jonelezhang.contactmanager.ContactsList">
+    tools:context="com.example.jonelezhang.contactmanager.Contacts">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/contacts_list"
+    <FrameLayout
+        android:id="@+id/contacts"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content">
+    </FrameLayout>
+
 
 </RelativeLayout>

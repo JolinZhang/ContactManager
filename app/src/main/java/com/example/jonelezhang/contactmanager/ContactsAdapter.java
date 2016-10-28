@@ -34,6 +34,8 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
         return 10;
     }
 
+
+
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public TextView firstName;
         public TextView lastName;
