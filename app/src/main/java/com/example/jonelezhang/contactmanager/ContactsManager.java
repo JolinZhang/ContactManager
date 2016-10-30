@@ -16,6 +16,7 @@ public class ContactsManager implements IContactsManager {
     public static ContactsManager INSTANCE = new ContactsManager();
     private ContactsManager() {}
     public static ContactsManager getInstance() {
+        INSTANCE.contacts = FileManager.getInstance().readFromPersistence();
         return INSTANCE;
     }
 
@@ -31,6 +32,7 @@ public class ContactsManager implements IContactsManager {
     @Override
     public void insertOrUpdate(Contact contact) {
         contacts.add(contact);
+        FileManager.getInstance().saveToPersistence(contacts);
     }
 
     @Override

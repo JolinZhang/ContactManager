@@ -1,6 +1,5 @@
 package com.example.jonelezhang.contactmanager;
 
-import java.util.Comparator;
 import java.util.UUID;
 
 /**
