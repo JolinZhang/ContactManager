@@ -1,12 +1,13 @@
 package com.example.jonelezhang.contactmanager;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 /**
  * Created by Shadow on 10/29/16.
  */
 
-public class Contact implements Comparable {
+public class Contact implements Comparable,Serializable{
 
     private String id = "";
 

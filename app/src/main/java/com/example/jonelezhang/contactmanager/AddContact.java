@@ -22,6 +22,10 @@ import android.widget.EditText;
 public class AddContact extends Fragment {
     private AppCompatButton save;
     private EditText firstName;
+    private EditText lastName;
+    private EditText phoneNumber;
+    private EditText email;
+    private Contact content;
 
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
@@ -30,6 +34,25 @@ public class AddContact extends Fragment {
 
         save = (AppCompatButton) v.findViewById(R.id.save);
         firstName = (EditText) v.findViewById(R.id.firstName);
+        lastName = (EditText) v.findViewById(R.id.lastName);
+        phoneNumber = (EditText) v.findViewById(R.id.phoneNumber);
+        email = (EditText) v.findViewById(R.id.email);
+
+        //show contact info
+        Bundle bundle = getArguments();
+        if(bundle != null){
+            content =(Contact) getArguments().getSerializable("Icontact");
+            firstName.setText(content.getFirstName());
+            lastName.setText(content.getLastName());
+            phoneNumber.setText(content.getPhoneNumber());
+            email.setText(content.getEmail());
+            save.setVisibility(View.VISIBLE);
+        }else{
+            content = new Contact();
+        }
+
+
+
         firstName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -54,18 +77,22 @@ public class AddContact extends Fragment {
 
             }
         });
-        return v;
-    }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        //save contact
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                content.setFirstName(firstName.getText().toString());
+                content.setLastName(lastName.getText().toString());
+                content.setPhoneNumber(phoneNumber.getText().toString());
+                content.setEmail(email.getText().toString());
+                ContactsManager.getInstance().insertOrUpdate(content);
                 getActivity().getSupportFragmentManager().popBackStack();
             }
         });
+
+
+        return v;
     }
 
     @Override
@@ -79,6 +106,9 @@ public class AddContact extends Fragment {
         switch (item.getItemId()){
             case R.id.delete:
                 getActivity().getSupportFragmentManager().popBackStack();
+
+                ContactsManager.getInstance().delete(content);
+
                 return true;
             default:
                 return false;

@@ -82,17 +82,17 @@ public class FileManager {
             while (line != null) {
 
                 String[] fields = line.split("\t");
-                if (fields.length != 5) { continue; }
+                line = reader.readLine();
+                if (fields.length < 2) { continue; }
 
                 Contact contact = new Contact();
                 contact.setId(fields[0]);
                 contact.setFirstName(fields[1]);
-                contact.setLastName(fields[2]);
-                contact.setPhoneNumber(fields[3]);
-                contact.setEmail(fields[4]);
+                if (fields.length > 2) { contact.setLastName(fields[2]); }
+                if (fields.length > 3) { contact.setPhoneNumber(fields[3]); }
+                if (fields.length > 4) { contact.setEmail(fields[4]); }
 
                 contacts.add(contact);
-                line = reader.readLine();
             }
 
             f.close();

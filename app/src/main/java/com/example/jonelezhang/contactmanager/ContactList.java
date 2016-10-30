@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 /**
  * Created by Jonelezhang on 10/28/16.
  */
@@ -21,6 +23,7 @@ import android.view.ViewGroup;
 public class ContactList extends Fragment {
     private RecyclerView contractList;
     private ContactsAdapter contactsAdapter;
+    private ArrayList<Contact> Icontacts;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -30,7 +33,8 @@ public class ContactList extends Fragment {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         contractList.setLayoutManager(mLayoutManager);
 
-        contactsAdapter = new ContactsAdapter();
+        Icontacts = ContactsManager.getInstance().getContacts();
+        contactsAdapter = new ContactsAdapter(getActivity(), Icontacts);
         contractList.setAdapter(contactsAdapter);
 
         setHasOptionsMenu(true);
@@ -39,8 +43,9 @@ public class ContactList extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onResume() {
+        super.onResume();
+//        contactsAdapter.notifyDataSetChanged();
     }
 
 
@@ -50,7 +55,6 @@ public class ContactList extends Fragment {
         inflater.inflate(R.menu.option_menu, menu);
 
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

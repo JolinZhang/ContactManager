@@ -31,6 +31,7 @@ public class ContactsManager implements IContactsManager {
      */
     @Override
     public void insertOrUpdate(Contact contact) {
+        contacts.remove(contact);
         contacts.add(contact);
         FileManager.getInstance().saveToPersistence(contacts);
     }
@@ -38,6 +39,7 @@ public class ContactsManager implements IContactsManager {
     @Override
     public void delete(Contact contact) {
         contacts.remove(contact);
+        FileManager.getInstance().saveToPersistence(contacts);
     }
 
     @Override
