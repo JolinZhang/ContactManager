@@ -25,6 +25,9 @@ public class ContactList extends Fragment {
     private ContactsAdapter contactsAdapter;
     private ArrayList<Contact> Icontacts;
 
+    /**
+     * Author: rxz151130 - Ru Zhang
+     */
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_contact_list, container, false);
@@ -42,13 +45,9 @@ public class ContactList extends Fragment {
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-//        contactsAdapter.notifyDataSetChanged();
-    }
-
-
+    /**
+     * Author: rxz151130 - Ru Zhang
+     */
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
@@ -56,11 +55,15 @@ public class ContactList extends Fragment {
 
     }
 
+    /**
+     * Author: rxz151130 - Ru Zhang
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.add:
                 AddContact addContact = new AddContact();
+                //  Go to contact adding page.
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.contacts, addContact)
                         .addToBackStack(null)

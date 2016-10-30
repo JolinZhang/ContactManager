@@ -2,7 +2,6 @@ package com.example.jonelezhang.contactmanager;
 
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
 import android.text.Editable;
@@ -27,18 +26,22 @@ public class AddContact extends Fragment {
     private EditText email;
     private Contact content;
 
+    /**
+     * Author: rxz151130 - Ru Zhang
+     */
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_add_contact,container, false);
         setHasOptionsMenu(true);
 
+        //  Connecting views to properties.
         save = (AppCompatButton) v.findViewById(R.id.save);
         firstName = (EditText) v.findViewById(R.id.firstName);
         lastName = (EditText) v.findViewById(R.id.lastName);
         phoneNumber = (EditText) v.findViewById(R.id.phoneNumber);
         email = (EditText) v.findViewById(R.id.email);
 
-        //show contact info
+        //  Show contact info.
         Bundle bundle = getArguments();
         if(bundle != null){
             content =(Contact) getArguments().getSerializable("Icontact");
@@ -51,14 +54,10 @@ public class AddContact extends Fragment {
             content = new Contact();
         }
 
-
-
+        //  Save button is only visible when first name is filled.
         firstName.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -67,15 +66,10 @@ public class AddContact extends Fragment {
                 }else{
                     save.setVisibility(View.INVISIBLE);
                 }
-
-
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
-
-
-            }
+            public void afterTextChanged(Editable s) {}
         });
 
         //save contact
@@ -90,25 +84,27 @@ public class AddContact extends Fragment {
                 getActivity().getSupportFragmentManager().popBackStack();
             }
         });
-
-
         return v;
     }
 
+    /**
+     * Author: rxz151130 - Ru Zhang
+     */
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.delete_menu,menu);
     }
 
+    /**
+     * Author: rxz151130 - Ru Zhang
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.delete:
                 getActivity().getSupportFragmentManager().popBackStack();
-
                 ContactsManager.getInstance().delete(content);
-
                 return true;
             default:
                 return false;

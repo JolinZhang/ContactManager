@@ -14,7 +14,9 @@ public class ContactsManagerTest {
     private Contact jolin;
     private Contact michael;
 
-
+    /**
+     * Author: zxq150130 - Zengtai Qi
+     */
     @Before
     public void setUp() {
         shane = new Contact();
@@ -42,6 +44,9 @@ public class ContactsManagerTest {
 
     }
 
+    /**
+     * Author: zxq150130 - Zengtai Qi
+     */
     @Test
     public void getContactsTest() throws Exception {
 
@@ -53,6 +58,9 @@ public class ContactsManagerTest {
 
     }
 
+    /**
+     * Author: zxq150130 - Zengtai Qi
+     */
     @Test
     public void insertOrUpdateTest() throws Exception {
         ContactsManager.getInstance().insertOrUpdate(new Contact());
@@ -76,6 +84,9 @@ public class ContactsManagerTest {
 
     }
 
+    /**
+     * Author: zxq150130 - Zengtai Qi
+     */
     @Test
     public void deleteTest() throws Exception {
         ContactsManager.getInstance().delete(shane);

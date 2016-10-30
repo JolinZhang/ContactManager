@@ -13,6 +13,9 @@ public class ContactsModelTest {
 
     private Contact shane;
 
+    /**
+     * Author: zxq150130 - Zengtai Qi
+     */
     @Before
     public void setUp() {
         shane = new Contact();
@@ -22,6 +25,9 @@ public class ContactsModelTest {
         shane.setEmail("qizengtai@gmail.com");
     }
 
+    /**
+     * Author: zxq150130 - Zengtai Qi
+     */
     @Test
     public void contactCloneTest() throws  Exception {
         Contact shaneClone = shane.clone();
@@ -34,6 +40,9 @@ public class ContactsModelTest {
 
     }
 
+    /**
+     * Author: zxq150130 - Zengtai Qi
+     */
     @Test
     public void contactHashcodeTest() throws Exception {
         Contact someone = new Contact();
@@ -42,6 +51,9 @@ public class ContactsModelTest {
         assertEquals(someone.hashCode(), shane.hashCode());
     }
 
+    /**
+     * Author: zxq150130 - Zengtai Qi
+     */
     @Test
     public void contactComparingTest() throws Exception {
         Contact jolin = new Contact();

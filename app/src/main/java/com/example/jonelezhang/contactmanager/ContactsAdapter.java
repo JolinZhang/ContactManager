@@ -1,6 +1,5 @@
 package com.example.jonelezhang.contactmanager;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -9,8 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -21,19 +18,27 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
     private ArrayList<Contact> Icontacts;
     private Context context;
 
+    /**
+     * Author: rxz151130 - Ru Zhang
+     */
     public ContactsAdapter(Context context, ArrayList<Contact> Icontacts){
         this.Icontacts = Icontacts;
         this.context = context;
     }
 
+    /**
+     * Author: rxz151130 - Ru Zhang
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.contact_cell_layout,parent,false);
         return new ViewHolder(v);
-
     }
 
+    /**
+     * Author: rxz151130 - Ru Zhang
+     */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Contact Icontact = Icontacts.get(position);
@@ -41,6 +46,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
         holder.lastName.setText(Icontact.getLastName());
         holder.phoneNumber.setText(Icontact.getPhoneNumber());
 
+        //  Contact item click event.
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,18 +65,22 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
 
     }
 
+    /**
+     * Author: rxz151130 - Ru Zhang
+     */
     @Override
     public int getItemCount() {
         return Icontacts.size();
     }
-
-
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public TextView firstName;
         public TextView lastName;
         public TextView phoneNumber;
 
+        /**
+         * Author: rxz151130 - Ru Zhang
+         */
         public ViewHolder(View itemView) {
             super(itemView);
             firstName = (TextView) itemView.findViewById(R.id.firstName);

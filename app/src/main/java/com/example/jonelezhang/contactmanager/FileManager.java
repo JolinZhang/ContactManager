@@ -23,16 +23,29 @@ public class FileManager {
 
     private static final FileManager INSTANCE = new FileManager();
 
+    /**
+     * Author: zxq150130 - Zengtai Qi
+     */
     private FileManager() {}
 
+    /**
+     * Author: zxq150130 - Zengtai Qi
+     */
     public static FileManager getInstance() {
         return INSTANCE;
     }
 
+    /**
+     * Author: zxq150130 - Zengtai Qi
+     * @return The file stores contacts information.
+     */
     private File persistence() {
+        //  Find the storage file directory.
         File root = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOCUMENTS);
         File dir = new File(root.getAbsolutePath() + File.separator + "ContactManager");
+        dir.mkdirs();
         File file = new File(dir, "db.txt");
+        //  Create a empty if not exists.
         if (!file.exists()) {
             try {
                 file.createNewFile();
@@ -43,12 +56,17 @@ public class FileManager {
         return file;
     }
 
+    /**
+     * Author: zxq150130 - Zengtai Qi
+     * @param contacts The collection of contacts to save to persistent storage.
+     */
     public void saveToPersistence(Collection<Contact> contacts) {
         File file = persistence();
         try {
             FileOutputStream f = new FileOutputStream(file,false); //True = Append to file, false = Overwrite
             PrintStream p = new PrintStream(f);
 
+            //  Use tab as fields separator.
             for (Contact contact: contacts) {
                 String line = contact.getId() + '\t' +
                         contact.getFirstName() + '\t' +
@@ -56,6 +74,8 @@ public class FileManager {
                         contact.getPhoneNumber() + '\t' +
                         contact.getEmail() + '\t';
                 p.print(line);
+
+                //  Use line break as objects separator.
                 p.print('\n');
             }
 
@@ -68,6 +88,10 @@ public class FileManager {
         }
     }
 
+    /**
+     * Author: zxq150130 - Zengtai Qi
+     * @return A set of contacts that was stored in the persistence storage.
+     */
     public HashSet<Contact> readFromPersistence() {
 
         HashSet<Contact> contacts = new HashSet<>();
@@ -83,11 +107,13 @@ public class FileManager {
 
                 String[] fields = line.split("\t");
                 line = reader.readLine();
+                //  Id and firstname must exist, otherwise skip this line.
                 if (fields.length < 2) { continue; }
-
                 Contact contact = new Contact();
                 contact.setId(fields[0]);
                 contact.setFirstName(fields[1]);
+
+                //  If any other fields, save them into contact object.
                 if (fields.length > 2) { contact.setLastName(fields[2]); }
                 if (fields.length > 3) { contact.setPhoneNumber(fields[3]); }
                 if (fields.length > 4) { contact.setEmail(fields[4]); }
