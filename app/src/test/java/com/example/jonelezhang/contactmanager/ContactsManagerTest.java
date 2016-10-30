@@ -64,6 +64,16 @@ public class ContactsManagerTest {
         ContactsManager.getInstance().insertOrUpdate(clone);
 
         assertEquals(4, ContactsManager.getInstance().getContacts().size());
+
+        for (Contact contact: ContactsManager.getInstance().getContacts()) {
+            if (contact.getFirstName() == "fake shane") {
+                assertTrue(true);
+                return;
+            }
+        }
+
+        assertFalse(true);
+
     }
 
     @Test
@@ -71,5 +81,12 @@ public class ContactsManagerTest {
         ContactsManager.getInstance().delete(shane);
         assertEquals(2, ContactsManager.getInstance().getContacts().size());
         assertEquals(false, ContactsManager.getInstance().getContacts().contains(shane));
+
+        Contact clone = jolin.clone();
+        clone.setFirstName("");
+        ContactsManager.getInstance().delete(clone);
+        assertEquals(1, ContactsManager.getInstance().getContacts().size());
+        assertEquals(false, ContactsManager.getInstance().getContacts().contains(jolin));
+
     }
 }
