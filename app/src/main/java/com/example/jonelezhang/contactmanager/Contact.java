@@ -1,12 +1,13 @@
 package com.example.jonelezhang.contactmanager;
 
+import java.util.Comparator;
 import java.util.UUID;
 
 /**
  * Created by Shadow on 10/29/16.
  */
 
-public class Contact {
+public class Contact implements Comparable {
 
     private String id = "";
 
@@ -17,6 +18,10 @@ public class Contact {
 
     public Contact() {
         this.id = UUID.randomUUID().toString();
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getFirstName() {
@@ -35,6 +40,10 @@ public class Contact {
         return email;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -50,4 +59,33 @@ public class Contact {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public int hashCode() {
+        return this.id.hashCode();
+    }
+
+    public boolean equals(Object o) {
+        if (this.hashCode() == o.hashCode()) { return true; }
+        return false;
+    }
+
+    public Contact clone() {
+        Contact newContact = new Contact();
+        newContact.setId(this.getId());
+        newContact.setFirstName(this.firstName);
+        newContact.setLastName(this.lastName);
+        newContact.setEmail(this.email);
+        newContact.setPhoneNumber(this.phoneNumber);
+        return newContact;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Contact that = (Contact) o;
+        String thisNameString = this.getFirstName() + this.getLastName();
+        String thatnameStirng = that.getFirstName() + that.getLastName();
+        return (thisNameString).compareTo(thatnameStirng);
+    }
+
 }
