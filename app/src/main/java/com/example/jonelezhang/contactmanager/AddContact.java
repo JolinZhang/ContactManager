@@ -33,17 +33,24 @@ public class AddContact extends Fragment {
         firstName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                save.setVisibility(View.VISIBLE);
+
 
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(count>0){
+                    save.setVisibility(View.VISIBLE);
+                }else{
+                    save.setVisibility(View.INVISIBLE);
+                }
+
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+
 
             }
         });
