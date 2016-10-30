@@ -18,6 +18,8 @@ public interface IContactsManager {
      */
     void insertOrUpdate(Contact contact);
 
+    void delete(Contact contact);
+
     /**
      *
      * @return Sorted contacts list.

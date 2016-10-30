@@ -22,6 +22,11 @@ public class ContactsManager implements IContactsManager {
     }
 
     @Override
+    public void delete(Contact contact) {
+
+    }
+
+    @Override
     public ArrayList<Contact> getContacts() {
         return null;
     }
